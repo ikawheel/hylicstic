@@ -4,7 +4,9 @@ import "./App.css";
 import { meishi, meishiArr } from "./japanese/meishi";
 import { joshi, joshiArr } from "./japanese/joshi";
 import { keiyoshi } from "./japanese/keiyoshi";
+import { doshi } from "./japanese/doshi";
 import { getFirstWord } from "./funcs/getFirstWord";
+import { getWordFollowedByJoshi } from "./funcs/getWordFollowedByJoshi";
 
 function App() {
   return (
@@ -30,13 +32,17 @@ function App() {
 function generateHylicsText(): string {
   let str: string;
   let justBefore: string;
-
+  let tmpStr: string;
+  let loopNum: number = 0;
   [justBefore, str] = getFirstWord();
+
   while (true) {
     // 終了判定、今はとりあえず直前が主語なら終了可能。
-    if (justBefore === meishi && isContenue()) {
+    // if ((justBefore === meishi && loopNum > 1) || justBefore === doshi) {
+    if (justBefore === doshi) {
       break;
     }
+    loopNum++;
 
     if (justBefore === meishi) {
       justBefore = joshiArr[0];
@@ -44,7 +50,19 @@ function generateHylicsText(): string {
       continue;
     }
 
-    if (justBefore === joshi || justBefore === keiyoshi) {
+    if (justBefore === joshi) {
+      [justBefore, tmpStr] = getWordFollowedByJoshi();
+      str += tmpStr;
+      continue;
+    }
+
+    if (justBefore === keiyoshi) {
+      justBefore = meishiArr[0];
+      str += getStrFrom(meishiArr);
+      continue;
+    }
+
+    if (justBefore === doshi) {
       justBefore = meishiArr[0];
       str += getStrFrom(meishiArr);
       continue;
