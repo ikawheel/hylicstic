@@ -3,7 +3,7 @@ export const doshi: string = "doshi";
 
 export const doshiData: wordDataType = {
   role: doshi,
-  isTerminatable: true,
+  isTerminatable: false,
   wordArr: [
     "会う",
     "合う",

@@ -19,7 +19,7 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <button onClick={() => setText(getHylicsText())}>aaaaaa</button>
+        <button onClick={() => setText(getHylicsText())}>restart</button>
         <a
           className="App-link"
           href="https://reactjs.org"
