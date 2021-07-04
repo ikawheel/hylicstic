@@ -7,6 +7,7 @@ import { doshiData, doshi } from "../japanese/doshi";
 import { keiyodoshiData, keiyodoshi } from "../japanese/keiyodoshi";
 import { wordDataType } from "../japanese/wordDataType";
 import { joshiData, joshi } from "../japanese/joshi";
+import { rentaishiData, rentaishi } from "../japanese/rentaishi";
 
 // 文章の最初の単語を選ぶ
 export function getFirstWord(): [string, string, boolean] {
@@ -18,7 +19,12 @@ export function getWordFollowedBy(role: string): [string, string, boolean] {
   switch (role) {
     //動詞に続く単語を得る(動く、壊す、戦う.....)
     case doshi:
-      return getWord([meishiData, keiyodoshiData, keiyodoshiData]);
+      return getWord([
+        meishiData,
+        keiyodoshiData,
+        keiyodoshiData,
+        rentaishiData,
+      ]);
 
     //名詞に続く単語を得る
     case meishi:
@@ -30,11 +36,16 @@ export function getWordFollowedBy(role: string): [string, string, boolean] {
 
     //助詞に続く単語を得る
     case joshi:
-      return getWord([keiyoshiData, meishiData, doshiData]);
+      return getWord([keiyoshiData, meishiData, doshiData, rentaishiData]);
 
     //形容詞に続く単語を得る(美しい、騒々しい、華々しい.....)
     case keiyoshi:
-      return getWord([keiyodoshiData, meishiData, da_katsuyo_terminationAData]);
+      return getWord([
+        keiyodoshiData,
+        meishiData,
+        da_katsuyo_terminationAData,
+        rentaishiData,
+      ]);
 
     //形容動詞に続く単語を得る(いびつ、ほのか、真っ黒....)
     case keiyodoshi:
@@ -44,9 +55,13 @@ export function getWordFollowedBy(role: string): [string, string, boolean] {
         da_katsuyo_Data,
       ]);
 
+    //連体詞に続く単語を得る（あの、ひょんな、わが....)
+    case rentaishi:
+      return getWord([keiyoshiData, meishiData, doshiData, keiyodoshiData]);
+
     //終止形ではないダ活用に続く単語を得る
     case da_katsuyo:
-      return getWord([keiyoshiData, meishiData]);
+      return getWord([keiyoshiData, meishiData, rentaishiData]);
 
     // 到達しないはず
     default:
@@ -66,5 +81,5 @@ function getWord(arr: wordDataType[]): [string, string, boolean] {
       Math.floor(Math.random() * (selected.wordArr.length - 1)) + 1
     ];
 
-  return [selected.role, str, selected.isTerminatable];
+  return [str, selected.role, selected.isTerminatable];
 }

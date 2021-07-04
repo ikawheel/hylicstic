@@ -2,7 +2,7 @@ import { wordDataType } from "./wordDataType";
 export const meishi: string = "meishi";
 export const meishiData: wordDataType = {
   role: meishi,
-  isTerminatable: true,
+  isTerminatable: false,
   wordArr: [
     " 喫茶店",
     "CD",
