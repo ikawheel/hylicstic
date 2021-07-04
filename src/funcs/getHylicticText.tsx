@@ -14,11 +14,12 @@ export function getHylicsText(): string {
 
   while (true) {
     // 終了可能なら文章作成を終了する
-    if (isTerminatable && (isContenue() || loopNum > 5)) {
+    if (isTerminatable && loopNum > 5) {
       break;
     }
     loopNum++;
 
+    // 終止形なら終了、それ以外なら語の連結をする
     if (
       beforeRole === da_katsuyo_terminationA ||
       beforeRole === da_katsuyo_terminationB
@@ -35,6 +36,6 @@ export function getHylicsText(): string {
   return str + "  " + debugStr;
 }
 
-function isContenue(): boolean {
-  return Math.random() > 0.999;
-}
+// function isContenue(): boolean {
+//   return Math.random() > 0.999;
+// }

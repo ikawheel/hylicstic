@@ -11,7 +11,13 @@ import { rentaishiData, rentaishi } from "../japanese/rentaishi";
 
 // 文章の最初の単語を選ぶ
 export function getFirstWord(): [string, string, boolean] {
-  return getWord([keiyoshiData, meishiData, keiyodoshiData, doshiData]);
+  return getWord([
+    keiyoshiData,
+    meishiData,
+    keiyodoshiData,
+    doshiData,
+    rentaishiData,
+  ]);
 }
 
 // 引数で与えられた語に続く語を得る
