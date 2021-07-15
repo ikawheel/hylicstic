@@ -47,10 +47,10 @@ export function getWordFollowedBy(role: string): [string, string, boolean] {
     //形容詞に続く単語を得る(美しい、騒々しい、華々しい.....)
     case keiyoshi:
       return getWord([
-        keiyodoshiData,
+        // keiyodoshiData,
         meishiData,
         da_katsuyo_terminationAData,
-        rentaishiData,
+        // rentaishiData,
       ]);
 
     //形容動詞に続く単語を得る(いびつ、ほのか、真っ黒....)
@@ -67,7 +67,7 @@ export function getWordFollowedBy(role: string): [string, string, boolean] {
 
     //終止形ではないダ活用に続く単語を得る
     case da_katsuyo:
-      return getWord([keiyoshiData, meishiData, rentaishiData]);
+      return getWord([keiyoshiData, meishiData]);
 
     // 到達しないはず
     default:

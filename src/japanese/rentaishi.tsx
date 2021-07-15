@@ -33,7 +33,7 @@ export const rentaishiData: wordDataType = {
     "そんな",
     "大の",
     "ちいさな",
-    "当該",
+    "当該の",
     "どの",
     "とんだ",
     "どんな",
